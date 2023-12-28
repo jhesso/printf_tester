@@ -1,4 +1,4 @@
-Just a really simple main file to test prinft with.
+Just a really simple main file to test printf with.
 
 to use the script:
 ```bash
