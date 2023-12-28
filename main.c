@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <limits.h>
-#include "includes/ft_printf.h"
+#include "ft_printf.h"
 
 #define RESET "\033[0m"
 #define RED "\033[0;31m"
