@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <limits.h>
+#include <unistd.h>
 #include "ft_printf.h"
 
 #define RESET "\033[0m"
@@ -186,6 +187,19 @@ void	test_all_specifiers(void)
 	printf(GREEN "\nLength: printf = %d, ft_printf = %d\n\n" RESET, printf_length, ft_printf_length);
 }
 
+void	test_write_fail(void)
+{
+	int	printf_length = 0;
+	int	ft_printf_length = 0;
+
+	printf(RED "\n----------- TEST: WRITE FAIL -----------\n\n" RESET);
+	printf(BLUE "Testing: (\"just a simple write fail test %%s %%d %%x\")\n" RESET);
+	close(STDOUT_FILENO);
+	printf_length = printf("Real: just a simple write fail test %s %d %x\n", "test", 42, 42);
+	ft_printf_length = ft_printf("Real: just a simple write fail test %s %d %x\n", "test", 42, 42);
+	dprintf(STDERR_FILENO, "Real: %d\nMine: %d\n", printf_length, ft_printf_length);
+}
+
 int	main(void)
 {
 	printf(RED "\n************************* FT_PRINTF TEST *************************\n\n" RESET);
@@ -199,5 +213,6 @@ int	main(void)
 	test_X_specifier();
 	test_p_specifier();
 	test_all_specifiers();
+	test_write_fail();
 	return (0);
 }
